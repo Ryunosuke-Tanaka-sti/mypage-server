@@ -19,34 +19,32 @@
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '18.x'                # set this to the node version to use
+  NODE_VERSION: "18.x" # set this to the node version to use
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-    - name: npm install, build, and test
-      run: |
-        yarn install
-        yarn build
+      - name: npm install, build, and test
+        run: |
+          yarn install
+          yarn build
 
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        ftp-server: ftp://s193.coreserver.jp
-        ftp-username: ryureinaf.git
-        ftp-password: testrepository0
-        local-dir: ./public/
-
-
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ftp://s193.coreserver.jp
+          username: ryureinaf.git
+          password: testrepository0
+          local-dir: ./public/
