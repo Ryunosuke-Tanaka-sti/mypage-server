@@ -28,6 +28,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: hosting
     steps:
       - uses: actions/checkout@v3
 
@@ -44,7 +46,7 @@ jobs:
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: s193.coreserver.jp
-          username: ryureinaf.git
-          password: testrepository0
+          server: ${{ secrets.SERVER}}
+          username: ${{secrets.USER_NAME}}
+          password: ${{secrets.PASSWORD}}
           local-dir: ./public/
