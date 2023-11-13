@@ -44,7 +44,7 @@ jobs:
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: ftp://s193.coreserver.jp
+          server: s193.coreserver.jp
           username: ryureinaf.git
           password: testrepository0
           local-dir: ./public/
